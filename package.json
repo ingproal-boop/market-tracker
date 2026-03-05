@@ -1,0 +1,7 @@
+{"name": "market-tracker",
+  "version": "1.0.0",
+  "description": "Rastreador de Seiko 5 en Wallapop",
+  "main": "scraper.js",
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "axios": "^1.6.0"}}

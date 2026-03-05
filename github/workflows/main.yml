@@ -1,0 +1,24 @@
+name: Market Scraper Automatic
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Se ejecuta automáticamente cada hora
+  workflow_dispatch:     # Mantiene el botón gris de "Run workflow"
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+      - name: Run Scraper
+        run: node scraper.js
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
